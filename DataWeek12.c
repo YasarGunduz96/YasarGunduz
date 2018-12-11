@@ -113,8 +113,8 @@ int delete(int num){
 
 int deleteHeap(struct heap*q){
 if(q->cnt!=0){
-    int min=q->data[1];//Min Bastak˝ Elemand˝r.
-    q->data[1]=q->data[q->cnt--];//Son Eleman Basa Gel˝yor..
+    int min=q->data[1];//Min Bastak√Ω Elemand√Ωr.
+    q->data[1]=q->data[q->cnt--];//Son Eleman Basa Gel√Ωyor..
     int index=1;
 
     while(index<=q->cnt/2&&q->data[index]>q->data[2*index]||q->data[index]>q->data[2*index+1]){
