@@ -3,7 +3,6 @@
 
 #define Queue_SIZE 100
 int array[100], n;
-
 struct heap{
     int data[Queue_SIZE];
     int cnt;
@@ -19,18 +18,6 @@ void display(){
 
     printf("\n");
 }
-
-void display_struct(struct heap*q){
-if (q->cnt == 0){
-        printf("Heap is empty \n");
-        return;
-    }
-    for (int i = 1; i <= q->cnt; i++)
-        printf("%d ", q->data[i]);
-
-    printf("%\n");
-}
-
 void insert(int num, int location){
     int parentnode;
     while (location > 0)
@@ -46,21 +33,6 @@ void insert(int num, int location){
     }/*End of while*/
     array[0] = num; /*assign number to the root node */
 }/*End of insert()*/
-
-void insertHeap(struct heap*q,int key){
-    if(q->cnt!=Queue_SIZE){
-        int index=++q->cnt;
-        q->data[q->cnt]=key;
-
-        while(index!=1&&q->data[index]<q->data[index/2]){
-            int temp = q->data[index];
-            q->data[index] = q->data[index/2];
-            q->data[index/2] = temp;
-            index=index/2;
-        }
-    }
-}
-
 int delete(int num){
     int left, right, i, temp, parentnode;
 
@@ -110,33 +82,55 @@ int delete(int num){
         array[left] = temp;
     }
 }
+void display_struct(struct heap*q){
+if (q->cnt == 0){
+        printf("Heap is empty \n");
+        return;
+    }
+    for (int i = 1; i <= q->cnt; i++)
+        printf("%d ", q->data[i]);
 
+    printf("%\n");
+}
+void insertHeap(struct heap*q,int key){
+    if(q->cnt!=Queue_SIZE){
+        int index=++q->cnt;
+        q->data[q->cnt]=key;
+
+        while(index!=1&&q->data[index]<q->data[index/2]){
+            int temp = q->data[index];
+            q->data[index] = q->data[index/2];
+            q->data[index/2] = temp;
+            index=index/2;
+        }
+    }
+}
 int deleteHeap(struct heap*q){
 if(q->cnt!=0){
-    int min=q->data[1];//Min Bastaký Elemandýr.
-    q->data[1]=q->data[q->cnt--];//Son Eleman Basa Gelýyor..
+    int min=q->data[1];
+    q->data[1]=q->data[q->cnt--];
     int index=1;
-
-    while(index<=q->cnt/2&&q->data[index]>q->data[2*index]||q->data[index]>q->data[2*index+1]){
-
-
-        if(q->data[2*index]<q->data[2*index+1]){
+    while(index<=q->cnt/2){
+        if(q->data[index]>q->data[2*index]||q->data[index]>q->data[2*index+1]){
+            if(q->data[2*index]<q->data[2*index+1]){
             int temp = q->data[2*index];
-            q->data[2*index] = q->data[2*index+1];
-            q->data[2*index+1] = temp;
+            q->data[2*index] = q->data[index];
+            q->data[index] = temp;
             index=2*index;
+            printf("index: %d: ",index);
+            display_struct(q);
         }
         else{
             int temp = q->data[2*index+1];
-            q->data[2*index+1] = q->data[2*index];
-            q->data[2*index] = temp;
+            q->data[2*index+1] = q->data[index];
+            q->data[index] = temp;
             index=2*index+1;
+            printf("index: %d: ",index);
+            display_struct(q);
             }
         }
-
-
-
-        return min;
+    }
+    return min;
     }
 }
 
