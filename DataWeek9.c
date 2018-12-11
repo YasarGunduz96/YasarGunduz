@@ -111,7 +111,7 @@ else if(data>root->data)
 else{
     if((root->left==NULL)||(root->right==NULL)){//Silinecek veri kontrol ediliyor!!
         AVLTREE*temp=root->left ? root->left:root->right;
-        // Eger cocuk yoksa temp NULL degerini alýyor fakat bir cocuk varsa,cocuk temp'e ataniyor!!
+        // Eger cocuk yoksa temp NULL degerini alÃ½yor fakat bir cocuk varsa,cocuk temp'e ataniyor!!
         if(temp==NULL){
             temp=root;
             root=NULL;
