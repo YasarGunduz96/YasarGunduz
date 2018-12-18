@@ -29,14 +29,14 @@ struct Graph* createGraph(struct Edge edges[], int n){
 		int dest = edges[i].dest;
 		int weight = edges[i].weight;
 
-        //One Linked List /*Directed Yapı Oluyor*/
+        //One Linked List /*Directed YapÃ½ Oluyor*/
 		struct node* newNode=(struct node*)malloc(sizeof(struct node));
 		newNode->dest = dest;
         newNode->weight = weight;
 		newNode->next = graph->head[src];
 		graph->head[src] = newNode;
 
-		//Double Linked List  /*Undirected Yapı Oluyor.*/
+		//Double Linked List  /*Undirected YapÃ½ Oluyor.*/
         newNode=(struct node*)malloc(sizeof(struct node));
         newNode->dest = src;
         newNode->next = graph->head[dest];
