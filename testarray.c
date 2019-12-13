@@ -84,7 +84,7 @@ int main(){
                     toplam+=V[j+1][k+1]*F[y1][x1];
                 }
             }
-            G[y][x]=toplam;
+            G[y][x]=toplam/9;
         }
     }
     printf("\n");
